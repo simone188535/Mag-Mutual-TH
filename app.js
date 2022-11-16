@@ -1,10 +1,10 @@
-const express = require();
+const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
-const userRoutes = require('./controllers/userControllers');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
