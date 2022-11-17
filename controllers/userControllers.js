@@ -60,9 +60,8 @@ exports.getUsersInDateRange = catchAsync(async(req, res, next) => {
     }
 
     const { rows } = await pool.query(
-        // "SELECT * FROM users WHERE dateCreated =< ($1) AND dateCreated >= ($2)",
-        "SELECT * FROM users WHERE dateCreated =< ($1)",
-        [from]
+        "SELECT * FROM users WHERE dateCreated BETWEEN ($1) AND ($2)",
+        [new Date(from), new Date(to)]
     );
     
     res.status(200).json({

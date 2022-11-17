@@ -14,7 +14,7 @@ const seedCSVData = async (row) => {
   try {
     await Pool.query(
       "INSERT INTO users(id, lastname, firstname, email, profession, dateCreated, country, city) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-      [Number(row[0]), row[1], row[2], row[3], row[4], row[5], row[6], row[7]]
+      [Number(row[0]), row[1], row[2], row[3], row[4], new Date(row[5]), row[6], row[7]]
     );
   } catch (e) {
     // handle errors
