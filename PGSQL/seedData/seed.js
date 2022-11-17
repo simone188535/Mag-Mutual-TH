@@ -12,11 +12,10 @@ Pool.connect()
 
 const seedCSVData = async (row) => {
   try {
-    const { rows } = await Pool.query(
+    await Pool.query(
       "INSERT INTO users(id, lastname, firstname, email, profession, dateCreated, country, city) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [Number(row[0]), row[1], row[2], row[3], row[4], row[5], row[6], row[7]]
     );
-    console.log('rows', rows);
   } catch (e) {
     // handle errors
     console.log('e', e);
@@ -34,6 +33,10 @@ fs.createReadStream(__dirname + "/UserInformation.csv").pipe(
         await Promise.all(csvData.map(async (row) => seedCSVData(row)));
         // End DB Connection
         Pool.end();
+        // success log
+        console.log('users table populated');
+        // end node script
+        process.exit();
     })
     .on("error", function (error) {
       console.log(error.message);
