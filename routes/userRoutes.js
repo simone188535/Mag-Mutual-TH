@@ -8,10 +8,10 @@ const {
   getUsersOfProfession,
 } = require("../controllers/userControllers");
 
-router.route("/").get(getAllUsers);
+router.route("/email").get(getUserByEmail);
+router.route("/date-between").get(getUsersInDateRange);
+router.route("/profession").get(getUsersOfProfession);
 router.route("/:id").get(getUserById);
-router.route("/email/:email").get(getUserByEmail);
-router.route("/date/:from-:to").get(getUsersInDateRange);
-router.route("/profession/:profession").get(getUsersOfProfession);
+router.route("/").get(getAllUsers);
 
 module.exports = router;
