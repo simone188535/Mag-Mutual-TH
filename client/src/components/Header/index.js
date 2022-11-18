@@ -13,9 +13,13 @@ function Header() {
         <h1 className="header-text">API Examples</h1>
       </section>
       <section className="nav-button">
-        {navItems.map((item) => (
-          <button type="button">{item}</button>
-        ))}
+        <ul>
+          {navItems.map((item) => (
+            <li>
+              <button type="button">{item}</button>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );
