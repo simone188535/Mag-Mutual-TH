@@ -9,11 +9,11 @@ const tableHead = [
   "City",
 ];
 
-function TableHelper({ trow }) {
+function TableHelper({ trow, className = "" }) {
   return (
-    <section className="table">
+    <section className={`table ${className}`}>
       <section className="table-body">
-        <div className="row-items">
+        <div className="row-items table-head">
           {tableHead.map((item, index) => (
             <div className="row-item" key={`table-head-${index}`}>
               {item}
@@ -43,7 +43,6 @@ function TableHelper({ trow }) {
             </div>
           )
         )}
-        {console.log("trow", trow)}
       </section>
     </section>
   );

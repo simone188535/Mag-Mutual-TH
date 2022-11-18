@@ -17,8 +17,11 @@ function GetAllUsers() {
   }, []);
 
   return (
-    <section>
-      <TableHelper trow={users}/>
+    <section className="page-temp">
+      <h2 className="primary-page-head">
+        Get all User
+      </h2>
+      <TableHelper trow={users} />
     </section>
   );
 }
