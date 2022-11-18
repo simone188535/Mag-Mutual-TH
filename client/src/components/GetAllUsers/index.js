@@ -19,14 +19,14 @@ function GetAllUsers() {
       setLoading(false);
     })();
   }, []);
-  
+
   return (
     <section className="page-temp">
       <h2 className="primary-page-head">
         Get all User
       </h2>
       <div className="page-content">
-      {totalUsers && <div className="total-results">Total Results: {totalUsers}</div> }
+      {!loading && totalUsers >= 0 && <div className="total-results">Total Results: {totalUsers}</div> }
       {loading ? <div className="loading-text">Loading...</div>: <TableHelper trow={users} />}
       </div>
     </section>
