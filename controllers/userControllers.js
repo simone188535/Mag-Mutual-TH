@@ -31,6 +31,10 @@ exports.getUser = catchAsync(async (req, res, next) => {
     [preparedStatementVal]
   );
 
+  if (rows.length === 0) {
+    return next(new AppError('This user does not exist.', 404));
+  }
+
   res.status(200).json({
     status: "success",
     allUsers: rows,
