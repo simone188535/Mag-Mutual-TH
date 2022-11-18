@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsers } from "../../API/APIRequest";
 
 import TableHelper from "../TableHelper";
+import LoadingRes from "../Common/LoadingRes";
 
 function GetAllUsers() {
   const [users, setUsers] = useState([]);
@@ -22,12 +23,15 @@ function GetAllUsers() {
 
   return (
     <section className="page-temp">
-      <h2 className="primary-page-head">
-        Get all User
-      </h2>
+      <h2 className="primary-page-head">Get all User</h2>
       <div className="page-content">
-      {!loading && totalUsers >= 0 && <div className="total-results">Total Results: {totalUsers}</div> }
-      {loading ? <div className="loading-text">Loading...</div>: <TableHelper trow={users} />}
+        {!loading && totalUsers >= 0 && (
+          <div className="status-text">Total Results: {totalUsers}</div>
+        )}
+        <LoadingRes
+          loadingState={loading}
+          children={<TableHelper trow={users} />}
+        />
       </div>
     </section>
   );
