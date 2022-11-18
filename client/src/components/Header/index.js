@@ -4,7 +4,7 @@ const navItems = [
   { link: "/users", btnText: "Get All Users" },
   { link: "/users/100", btnText: "Get User By Id" },
   { link: "/users/email", btnText: "Get User By Email" },
-  { link: "/users/profession", btnText: "Get User By Profession" },
+  { link: "/users/profession", btnText: "Get Users By Profession" },
   { link: "/users/date", btnText: "Get Users Between Dates" },
 ];
 
