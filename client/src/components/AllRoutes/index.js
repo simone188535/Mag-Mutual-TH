@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import GetAllUsers from '../GetAllUsers';
 import GetUserById from "../GetUserById";
@@ -7,13 +7,14 @@ import GetUsersInDateRange from "../GetUsersInDateRange";
 import GetUserByProfession from "../GetUserByProfession";
 
 function AllRoutes() {
+    const userPath = '/users'; 
   return (
     <Switch>
-      <Route path="/:id" component={GetUserById} />
-      <Route path="/email" component={GetUserByEmail} />
-      <Route path="/date" component={GetUsersInDateRange} />
-      <Route path="/profession" component={GetUserByProfession} />
-      <Route path="/" component={GetAllUsers} />
+      <Route path={`${userPath}/:id`} component={GetUserById} />
+      <Route path={`${userPath}/email`} component={GetUserByEmail} />
+      <Route path={`${userPath}/date`} component={GetUsersInDateRange} />
+      <Route path={`${userPath}/profession`} component={GetUserByProfession} />
+      <Redirect path="/" exact from="/" to={`${userPath}`} component={GetAllUsers} />
     </Switch>
   )
 }
