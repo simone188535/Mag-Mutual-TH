@@ -4,6 +4,8 @@ import { getUser } from "../../API/APIRequest";
 
 import TableHelper from "../TableHelper";
 import LoadingRes from "../Common/LoadingRes";
+import TotalRes from "../Common/TotalRes";
+import ErrMsg from "../Common/ErrMsg";
 
 function GetUserById() {
   let { id } = useParams();
@@ -24,8 +26,7 @@ function GetUserById() {
         setLoading(false);
       } catch (err) {
         setErrMsg(
-          err?.response?.data?.message ||
-            "Something went wrong. Please try again later"
+          err?.response?.data?.message || true
         );
       }
     })();
@@ -36,12 +37,10 @@ function GetUserById() {
       <h2 className="primary-page-head">Get User By Id</h2>
       <div className="page-content">
         {errMsg ? (
-          <div className="status-text">{errMsg}</div>
+          <ErrMsg errMsg={errMsg}/>
         ) : (
           <>
-            {!loading && totalUsers >= 0 && (
-              <div className="status-text">Total Results: {totalUsers}</div>
-            )}
+            <TotalRes loadingState={loading} totalRes={totalUsers}/>
             <LoadingRes
               loadingState={loading}
               children={<TableHelper trow={user} />}

@@ -3,6 +3,7 @@ import { getAllUsers } from "../../API/APIRequest";
 
 import TableHelper from "../TableHelper";
 import LoadingRes from "../Common/LoadingRes";
+import TotalRes from "../Common/TotalRes";
 
 function GetAllUsers() {
   const [users, setUsers] = useState([]);
@@ -25,9 +26,7 @@ function GetAllUsers() {
     <section className="page-temp">
       <h2 className="primary-page-head">Get all User</h2>
       <div className="page-content">
-        {!loading && totalUsers >= 0 && (
-          <div className="status-text">Total Results: {totalUsers}</div>
-        )}
+        <TotalRes loadingState={loading} totalRes={totalUsers} />
         <LoadingRes
           loadingState={loading}
           children={<TableHelper trow={users} />}
