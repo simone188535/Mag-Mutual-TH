@@ -91,15 +91,34 @@
     padding: 0 2.5%;
 
     .page-content {
-    .status-text {
-      margin-bottom: 10px;
-      text-align: center;
+      .status-text {
+        margin-bottom: 10px;
+        text-align: center;
+      }
     }
-  }
 
     .primary-page-head {
       margin: 20px 0 30px;
       text-align: center;
+    }
+
+    .search-bar-container {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      height: 40px;
+
+      .search-bar {
+        flex: 1;
+        border: 1px solid var(--blue-grotto);
+      }
+      .search-button {
+        flex-basis: 60px;
+        border: none;
+        background-color: var(--blue-grotto);
+        color: var(--white);
+      }
     }
   }
 
