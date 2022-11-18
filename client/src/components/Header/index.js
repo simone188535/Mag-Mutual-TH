@@ -20,6 +20,7 @@ function Header() {
         <section className="nav-items">
           {navItems.map((item) => (
             <button
+              key={item.link}
               type="button"
               className={`nav-item ${
                 location.pathname === item.link ? "active" : ""

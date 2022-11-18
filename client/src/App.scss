@@ -20,7 +20,7 @@
       display: flex;
       list-style-type: none;
       padding: 0;
-    
+
       .nav-item {
         flex: 1 1 auto;
         display: flex;
@@ -34,10 +34,35 @@
         &.active {
           background-color: var(--blue);
         }
-        
+
         .nav-link {
           color: var(--white);
           text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .table {
+    width: 100%;
+    .table-header {
+      display: flex;
+      text-align: center;
+
+      .table-head-item {
+        flex: 1;
+      }
+    }
+    .table-body {
+      .row-items {
+        display: flex;
+        .row-item {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          word-break: break-all;
+          max-width: 130px;
         }
       }
     }

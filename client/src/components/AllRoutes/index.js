@@ -10,11 +10,12 @@ function AllRoutes() {
     const userPath = '/users'; 
   return (
     <Switch>
-      <Route path={`${userPath}/:id`} component={GetUserById} />
       <Route path={`${userPath}/email`} component={GetUserByEmail} />
       <Route path={`${userPath}/date`} component={GetUsersInDateRange} />
       <Route path={`${userPath}/profession`} component={GetUserByProfession} />
-      <Redirect path="/" exact from="/" to={`${userPath}`} component={GetAllUsers} />
+      <Route path={`${userPath}/:id`} component={GetUserById} />
+      <Redirect path="/" exact from="/" to={`${userPath}`} />
+      <Route path={`${userPath}`} component={GetAllUsers} />
     </Switch>
   )
 }
