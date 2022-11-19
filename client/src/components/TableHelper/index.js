@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const tableHead = [
   "Id",
   "First Name",
@@ -37,7 +39,7 @@ function TableHelper({ trow, className = "" }) {
               <div className="row-item">{lastname}</div>
               <div className="row-item">{email}</div>
               <div className="row-item">{profession}</div>
-              <div className="row-item">{datecreated}</div>
+              <div className="row-item">{moment(datecreated).format("MM-DD-YYYY")}</div>
               <div className="row-item">{country}</div>
               <div className="row-item">{city}</div>
             </div>
