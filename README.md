@@ -1,6 +1,6 @@
 # Mag Mutual Project
 
-***
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 - [Description](#description)  
@@ -51,7 +51,7 @@ installed on your computer.
 ***
 
 ## Visuals
-<img src="images/presidential-gallery-one.png" alt="image"/>
+<img src="./client/src/assets/client.png" alt="image"/>
 
 
 ***
