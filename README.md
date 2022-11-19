@@ -45,7 +45,7 @@ installed on your computer.
 ***
 
 ## Links
-[Project Link to GitHub](https://github.com/mattholtmoore/presidential-gallery)  
+[Project Link to GitHub](https://github.com/simone188535/Mag-Mutual-TH)  
  
 
 ***
