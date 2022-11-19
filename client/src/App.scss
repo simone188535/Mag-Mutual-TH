@@ -7,9 +7,6 @@
 
 }
 
-/* body {
-  background-color:  var(--baby-blue);
-} */
 .app {
   .nav {
     .header {
@@ -91,6 +88,13 @@
     padding: 0 2.5%;
 
     .page-content {
+      .date-picker-container {
+        display: flex;
+        justify-content: space-around;
+        // .date-picker-option {
+        //   flex: 1 1 auto;
+        // }
+      }
       .status-text {
         margin-bottom: 10px;
         text-align: center;

@@ -91,19 +91,22 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
   const { from = '1-01-1000', to = '1-01-3000' } = req.query;
 
-//   if (!from || !to) {
-//     return next(new AppError("to and from must be provided!", 406));
-//   }
+  const ISOTo = new Date(to);
+  const ISOFrom = new Date(from);
+
+  if (ISOTo < ISOFrom) {
+    return next(new AppError("Invalid date!", 406));
+  }
 
   const { rows } = await pool.query(
     "SELECT * FROM users WHERE dateCreated BETWEEN ($1) AND ($2)",
-    [new Date(from), new Date(to)]
+    [ISOFrom, ISOTo]
   );
 
   res.status(200).json({
     status: "success",
+    allUsers: rows,
     totalUsersInRange: rows.length,
-    user: rows
   });
 });
 
