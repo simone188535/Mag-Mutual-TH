@@ -18,7 +18,7 @@ const seedCSVData = async (row) => {
     );
   } catch (e) {
     // handle errors
-    console.log('e', e);
+    console.log('err', e);
   }
 };
 // traverse CSV

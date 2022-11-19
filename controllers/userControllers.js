@@ -52,42 +52,6 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getUserById = catchAsync(async (req, res, next) => {
-//   const { id } = req.params;
-
-//   const userId = Number(id);
-
-//   if (!userId) {
-//     return next(new AppError("No user id was provided!", 406));
-//   }
-
-//   const { rows } = await pool.query("SELECT * FROM users WHERE id = ($1)", [
-//     userId,
-//   ]);
-
-//   res.status(200).json({
-//     status: "success",
-//     user: rows[0],
-//   });
-// });
-
-// exports.getUserByEmail = catchAsync(async (req, res, next) => {
-//   const { email } = req.params;
-
-//   if (!email) {
-//     return next(new AppError("No user email was provided!", 406));
-//   }
-
-//   const { rows } = await pool.query("SELECT * FROM users WHERE email = ($1)", [
-//     email,
-//   ]);
-
-//   res.status(200).json({
-//     status: "success",
-//     user: rows[0],
-//   });
-// });
-
 exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
   const { from = '1-01-1000', to = '1-01-3000' } = req.query;
 
@@ -110,20 +74,3 @@ exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getUsersOfProfession = catchAsync(async (req, res, next) => {
-//   const { profession } = req.body;
-
-//   if (!profession) {
-//     return next(new AppError("No user profession was provided!", 406));
-//   }
-
-//   const { rows } = await pool.query(
-//     "SELECT * FROM users WHERE profession = ($1)",
-//     [profession]
-//   );
-
-//   res.status(200).json({
-//     status: "success",
-//     user: rows,
-//   });
-// });
