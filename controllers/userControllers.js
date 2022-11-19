@@ -3,21 +3,9 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
 exports.getUser = catchAsync(async (req, res, next) => {
-  const { id, profession, email } = req.query;
+  const rq = req.query;
 
-  let findVal;
-  let preparedStatementVal;
-
-  if (id) {
-    findVal = "id";
-    preparedStatementVal = id;
-  } else if (profession) {
-    findVal = "profession";
-    preparedStatementVal = profession;
-  } else if (email) {
-    findVal = "email";
-    preparedStatementVal = email;
-  } else {
+  if (Object.keys(rq).length === 0) {
     return next(
       new AppError(
         "An id, username, or email must be provided to retrieve a user.",
@@ -26,13 +14,25 @@ exports.getUser = catchAsync(async (req, res, next) => {
     );
   }
 
+  // dynamically create querystr and prepared statement
+  let i = 1;
+  const preparedStatementArr = [];
+  let appendedQueryString = ``;
+  for (const val in rq) {
+    const andClause = appendedQueryString.length > 0 ? "AND" : "";
+    appendedQueryString += `${andClause} ${val} = ($${i})`;
+
+    preparedStatementArr.push(rq[val]);
+    i += 1;
+  }
+
   const { rows } = await pool.query(
-    `SELECT * FROM users WHERE ${findVal} = ($1)`,
-    [preparedStatementVal]
+    `SELECT * FROM users WHERE ${appendedQueryString}`,
+    preparedStatementArr
   );
 
   if (rows.length === 0) {
-    return next(new AppError('This user does not exist.', 404));
+    return next(new AppError("This user does not exist.", 404));
   }
 
   res.status(200).json({
@@ -53,7 +53,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
-  const { from = '1-01-1000', to = '1-01-3000' } = req.query;
+  const { from = "1-01-1000", to = "1-01-3000" } = req.query;
 
   const ISOTo = new Date(to);
   const ISOFrom = new Date(from);
@@ -73,4 +73,3 @@ exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
     totalUsersInRange: rows.length,
   });
 });
-
