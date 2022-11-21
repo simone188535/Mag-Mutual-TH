@@ -43,7 +43,7 @@ exports.getUser = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const { rows } = await pool.query("SELECT * FROM users");
+  const { rows } = await pool.query("SELECT * FROM users ORDER BY id ASC");
 
   res.status(200).json({
     status: "success",
@@ -63,7 +63,7 @@ exports.getUsersInDateRange = catchAsync(async (req, res, next) => {
   }
 
   const { rows } = await pool.query(
-    "SELECT * FROM users WHERE dateCreated BETWEEN ($1) AND ($2)",
+    "SELECT * FROM users WHERE dateCreated BETWEEN ($1) AND ($2) ORDER BY dateCreated ASC",
     [ISOFrom, ISOTo]
   );
 
